@@ -27,6 +27,16 @@ public class DepartmentController {
         ), HttpStatus.OK);
     }
 
+    @GetMapping("/{departId}")
+    public ResponseEntity<ApiDataResponse<Department>> getDepartment(@PathVariable String departId) {
+        return new ResponseEntity<>(new ApiDataResponse<>(
+                true,
+                "Lấy thông tin phòng " + departId + " thành công",
+                departmentService.getDepartmentById(departId),
+                HttpStatus.OK
+        ), HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<ApiDataResponse<Department>> insertDepartment(@RequestBody Department department) {
         return new ResponseEntity<>(new ApiDataResponse<>(

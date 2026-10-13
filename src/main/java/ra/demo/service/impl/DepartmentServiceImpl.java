@@ -7,10 +7,17 @@ import ra.demo.repository.DepartmetRepository;
 import ra.demo.service.DepartmentService;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class DepartmentServiceImpl implements DepartmentService {
+    @Override
+    public Department getDepartmentById(String departmentId) {
+        return departmetRepository.findByDepartId(departmentId).orElseThrow(()-> new NoSuchElementException("Không tồn tại phòng có id: "+departmentId));
+    }
+
     private final DepartmetRepository departmetRepository;
 
     @Override
